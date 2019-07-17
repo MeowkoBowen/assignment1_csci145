@@ -1,0 +1,107 @@
+//still need to add a loop and some error checking and stuff, but here's a basic draft
+//error checking would mostly be done in the methods, but some is outside the methods
+
+import java.util.*;
+
+public class assign1 {
+	
+	private static final boolean testingMode = true;
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner();	
+		int diff;
+		int guesses;
+		int previousGuesses;
+		String secretStr;
+		String dashes;
+		int[] spacesGuess = new int[4];
+		
+		diff = setDiff();
+		secretStr = RandomWord.newWord();
+		if(testingMode) {
+			System.out.println("The secret word is: " + secretStr);
+		}
+		dashes = toDashes(secretStr);
+		guesses = setGuesses();
+		//set loop somewhere around here
+		char charGuess = charGuess();
+		spacesGuess = guessSpaces(diff);
+		previousGuesses = guesses;
+		guesses = checkGuesses(guesses, diff, charGuess, spacesGuess);
+		if(guesses == previousGuesses) {
+			dashes = findPlaces(diff, dashes, charGuess, spacesGuess);
+		}
+		else {
+			
+		}
+		
+	}
+	
+	//sets diff to the wanted difficulty, the int returned is the number of times loops will run
+	//not going to be 1,2,3 but 2,3,4
+	public static int setDiff() {
+		
+		int diff = 0;
+		
+		return diff;
+		
+	}
+	
+	//creates and returns a string that consists of dashes the same length as the input string
+	//ex: dashes --> ------
+	public static String toDashes(String str) {
+		
+		String dashes = "";
+		
+		System.out.println("The word is: " + dashes);
+		return dashes;
+		
+	}
+	
+	//takes diff and assigns the number of guesses for the difficulty
+	public static int setGuesses() {
+		
+		int g;
+		
+		return g;
+		
+	}
+	
+	//asks the player the guess and outputs it to char
+	public static char charGuess() {
+		
+		char c;
+		
+		return c;
+		
+	}
+	
+	//prompts user to input spaces to check and output to array
+	public static int[] guessSpaces(int diff) {
+		
+		int[] spacesGuess = new int[4];
+		
+		return spacesGuess;
+		
+	}
+	
+	//takes in guesses and diff and checks for correctness
+	//if guesses are correct, does nothing
+	//if incorrect, reduces guesses by one
+	public static int checkGuesses(int guesses, int diff, char c, int[] spaces) {
+		
+		
+		return guesses;
+		
+	}
+	
+	//takes in all the guesses and such and replaces the correct guesses in the dashes string
+	public static String findPlaces(int diff, String dashes, char c, int[] spaces) {
+		
+		
+		return dashes;
+		
+	}
+	
+}

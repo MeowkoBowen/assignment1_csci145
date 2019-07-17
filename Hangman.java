@@ -3,6 +3,9 @@
 //Description: Hangman_group_assignment.
 
 
+//
+
+
 import java.util.Scanner;
 
 public class Hangman {
@@ -339,49 +342,10 @@ public class Hangman {
     }
 
 
-    //container checker
+  
 
-    public static boolean containChar(String n, char c, int index) {
-
-        if (n.charAt(index) == c) {
-            return true;
-
-
-        } else {
-            return false;
-        }
-    }
-
-    //helper function
-    //transform the spaces[] back to charsequence
-    public static String transformBacktoString(int s) {
-
-
-        StringBuilder string = new StringBuilder();
-
-
-        //convert s[i] to a char type
-        char k = (char) s;
-
-
-        string.append(k);
-
-
-        String result = string.toString();
-        return result;
-    }
-
-
-    //check char 1 by 1
-    public static boolean checkChar(String n, char c, int index) {
-
-        if (n.charAt(index) == c) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+   
+   
 
     //check if user input for spaces is legal or not
     public static boolean validInputCheckGame(int given, int allocated) {
@@ -395,104 +359,6 @@ public class Hangman {
         }
     }
 }
-
-
-//winning method
-
-//game running method
-
-//    public static String runGame(String winningWord, int numOfAttempts, int[] spaces, String dashes, char[] charArr, int spaceSize) {
-//
-//        while (numOfAttempts > 0 && !dashes.equals(winningWord)) {
-//
-//            spaces = new int[spaceSize];
-//
-//            Scanner input = new Scanner(System.in);
-//
-//
-//            //prompt for player to guess character
-//            System.out.println("please enter a character: ");
-//            String userGuess = input.nextLine();
-//            //convert to char
-//            char userGuessChar = userGuess.charAt(0);
-//
-//            //prompt user for space check
-//            System.out.print("please select the spaces you want to check (seperated by spaces): ");
-//            String num = input.nextLine();
-//
-//
-//            num = num.replaceAll(" ", "");
-//
-//            for (int i = 0; i < num.length(); i++) {
-//                int k = Character.getNumericValue(num.charAt(i));
-//                spaces[i] = k;
-//
-//
-//            }
-//
-//
-//
-//            if (validInputCheckGame(spaces.length, spaceSize)) {
-//
-//                //helper variable
-//                int checks = 0;
-//
-//
-//                for (int i1 = 0; i1 < spaceSize; i1++) {
-//                    if (winningWord.charAt(spaces[i1]) == userGuessChar) {
-//                        dashes = reveal(dashes, userGuessChar, spaces[i1]);
-//
-//                        //helper variable
-//                        checks++;
-//                    }
-//
-//
-//                    //meaning none of my spaces match
-//                }if(checks == 0){
-//                    System.out.println("Your letter was not found in the spaces you provided.");
-//                    numOfAttempts--;
-//                    System.out.println("Guesses Remaining " + numOfAttempts);
-//
-//                }
-//                System.out.println("The updated word is " + dashes);
-//                return dashes;
-//            }else{
-//                System.out.println("Your input is not valid. Try again.");
-//            }
-//        }
-//
-//        if(numOfAttempts >= 0 && dashes.equals(winningWord)){
-//            Scanner input = new Scanner(System.in);
-//            System.out.println("You have guessed the word! Congratulations");
-//            System.out.println("Would you like to play again? Yes(y) or No(n)");
-//            String choice = input.nextLine();
-//            choice = choice.toLowerCase();
-//
-//
-//            char choiceChar = choice.charAt(0);
-//
-//            if (choiceChar == 'y'){
-//                char newSelection = SelectorLevel();
-//
-//                //generate new randomword
-//
-//                winningWord = RandomWord.newWord();
-//
-//
-//            }else if( choiceChar == 'n'){
-//                System.out.println("Goodbye!");
-//            }
-//
-//
-//        }
-//        return dashes;
-//
-//
-//    }
-//}
-
-
-
 
 
 

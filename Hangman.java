@@ -1,9 +1,9 @@
-//Author:Huakai zeng
+//Authors: Huakai Zeng, Griffin Stofer, Garrett Strawn, Bowen Li
+
 //Date: 15th july 2019
+
+
 //Description: Hangman_group_assignment.
-
-
-//
 
 
 import java.util.Scanner;
@@ -27,7 +27,7 @@ public class Hangman {
 
         RandomWord word = new RandomWord();
         String winningWord = word.newWord();
-        System.out.println(winningWord);  //test to see what is the winningWord
+
 
 
         String dashes = dash(winningWord);
@@ -54,7 +54,16 @@ public class Hangman {
         //set conditions for number of attempts and spaces allocation given the choice of difficulties
 
         while (onOff == 0) {
+
+            //test to see what is the winningWord
+            if(testingMode) {
+                System.out.println("Secret word: " + winningWord);
+            }
+
+
             switch (schoice) {
+
+
 
 
                 case ('e'):
@@ -98,7 +107,7 @@ public class Hangman {
             }
 
 
-            while (numOfAttempts > 0 && !dashes.equals(winningWord)) {
+            while (numOfAttempts > 0 && !dashes.equals(winningWord)  ) {
 
                 spaces = new int[spaceSize];
 
@@ -108,6 +117,10 @@ public class Hangman {
                 //prompt for player to guess character
                 System.out.println("please enter a character: ");
                 String userGuess = input.nextLine();
+                if(userGuess.equals(winningWord)) {
+                    dashes = winningWord;
+                    break;
+                }
                 //convert to char
                 char userGuessChar = userGuess.charAt(0);
 
@@ -115,12 +128,20 @@ public class Hangman {
                 System.out.print("please select the spaces you want to check (seperated by spaces): ");
                 String num = input.nextLine();
 
+                if(num.equals(winningWord)) {
+                    dashes = winningWord;
+                    break;
+                }
+
 
                 num = num.replaceAll(" ", "");
 
                 for (int i = 0; i < num.length(); i++) {
                     int k = Character.getNumericValue(num.charAt(i));
                     spaces[i] = k;
+
+
+
 
 
                 }
@@ -241,10 +262,12 @@ public class Hangman {
 
                     winningWord = RandomWord.newWord();
 
+
+
                     dashes = dash(winningWord);
 
-                    //testing
-                    System.out.println(winningWord);
+
+
 
 
                 } else if (choiceChar == 'n') {
@@ -342,10 +365,11 @@ public class Hangman {
     }
 
 
-  
 
-   
-   
+
+
+
+
 
     //check if user input for spaces is legal or not
     public static boolean validInputCheckGame(int given, int allocated) {
@@ -359,6 +383,8 @@ public class Hangman {
         }
     }
 }
+
+
 
 
 

@@ -117,7 +117,7 @@ public class Hangman {
                 //prompt for player to guess character
                 System.out.println("please enter a character: ");
                 String userGuess = input.nextLine();
-                if(userGuess.equals(winningWord)) {
+                if (userGuess.equals(winningWord)) {
                     dashes = winningWord;
                     break;
                 }
@@ -128,7 +128,7 @@ public class Hangman {
                 System.out.print("please select the spaces you want to check (seperated by spaces): ");
                 String num = input.nextLine();
 
-                if(num.equals(winningWord)) {
+                if (num.equals(winningWord)) {
                     dashes = winningWord;
                     break;
                 }
@@ -136,18 +136,41 @@ public class Hangman {
 
                 num = num.replaceAll(" ", "");
 
-                for (int i = 0; i < num.length(); i++) {
-                    int k = Character.getNumericValue(num.charAt(i));
-                    spaces[i] = k;
+
+                if(num.length() == spaceSize) {
+                    for (int i = 0; i < num.length(); i++) {
+                        int k = Character.getNumericValue(num.charAt(i));
+                        spaces[i] = k;
+                    }
+                }else{
 
 
+                    System.out.println("Your input is invalid");
+                    System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
+                    num = input.nextLine();
+
+                    num = num.replaceAll(" ", "");
 
 
 
                 }
 
 
-                if (validInputCheckGame(spaces.length, spaceSize)) {
+                int given = num.length();
+                int givenSpace = spaces.length;
+
+               // System.out.println("give size is " + given);
+
+              //  System.out.println("Given space is "+ givenSpace);
+
+
+
+
+
+
+
+
+                if ( validInputCheckGame(given,spaceSize)  ) {
 
                     //helper variable
                     int checks = 0;
@@ -158,8 +181,7 @@ public class Hangman {
 
 
                         //make sure that the index of user's choice is within the length of the winningword
-                        if (spaces[i1] < winningWord.length()) {
-
+                        if (spaces[i1] < winningWord.length() && spaces[i1] < spaceSize) {
 
                             if (winningWord.charAt(spaces[i1]) == userGuessChar) {
                                 dashes = reveal(dashes, userGuessChar, spaces[i1]);
@@ -171,6 +193,7 @@ public class Hangman {
                             //print invalid input and reprompt for spaces
                         }  else {
                             spaces = new int[spaceSize];
+
                             System.out.println("Your input is invalid");
                             System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
                             num = input.nextLine();
@@ -212,6 +235,12 @@ public class Hangman {
                     // System.out.println("The updated word is " + dashes);
                 } else {
                     System.out.println("Your input is not valid. Try again.");
+
+
+                    System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
+                    num = input.nextLine();
+
+
                 }
             }
 
@@ -375,8 +404,8 @@ public class Hangman {
     public static boolean validInputCheckGame(int given, int allocated) {
         //if input is less or more than allocated space checks, return false.
         //print invalid input
-        if (given > allocated || given < allocated) {
-            System.out.println("Your input is not valid. Try again.");
+        if (given != allocated) {
+           // System.out.println("Your input is not valid. Try again.");
             return false;
         } else {
             return true;

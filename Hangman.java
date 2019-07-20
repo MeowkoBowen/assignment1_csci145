@@ -35,8 +35,6 @@ public class Hangman {
 
         char schoice = SelectorLevel();
 
-        System.out.println(schoice);
-
         //innitial value 1 prevents the while loop to jump to losing immediately
         int numOfAttempts = 1;
 

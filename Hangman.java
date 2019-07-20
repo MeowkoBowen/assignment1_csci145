@@ -140,106 +140,54 @@ public class Hangman {
                         int k = Character.getNumericValue(num.charAt(i));
                         spaces[i] = k;
                     }
-                }else{
+                    
+                    int given = num.length();
+                    int givenSpace = spaces.length;
 
+                    if ( validInputCheckGame(given,spaceSize)  ) {
 
-                    System.out.println("Your input is invalid");
-                    System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
-                    num = input.nextLine();
-
-                    num = num.replaceAll(" ", "");
-
-
-
-                }
-
-
-                int given = num.length();
-                int givenSpace = spaces.length;
-
-               // System.out.println("give size is " + given);
-
-              //  System.out.println("Given space is "+ givenSpace);
-
-
-
-
-
-
-
-
-                if ( validInputCheckGame(given,spaceSize)  ) {
-
-                    //helper variable
-                    int checks = 0;
-
-
-                    for (int i1 = 0; i1 < spaceSize; i1++) {
-
+                        //helper variable
+                        int checks = 0;
 
 
                         //make sure that the index of user's choice is within the length of the winningword
-                        if (spaces[i1] < winningWord.length() && spaces[i1] < spaceSize) {
-
-                            if (winningWord.charAt(spaces[i1]) == userGuessChar) {
-                                dashes = reveal(dashes, userGuessChar, spaces[i1]);
-
-                                //helper variable
-                                checks++;
-                            }
-
+                        for(int i = 0; i< spaceSize; i++) {
+                            if (spaces[i] < winningWord.length()) {  
+                                if (winningWord.charAt(spaces[i]) == userGuessChar) {
+                                    dashes = reveal(dashes, userGuessChar, spaces[i]);
+                                    //helper variable
+                                    checks++;
+                                    
+                                }
+                                 
                             //print invalid input and reprompt for spaces
-                        }  else {
-                            spaces = new int[spaceSize];
-
-                            System.out.println("Your input is invalid");
-                            System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
-                            num = input.nextLine();
-
-                            num = num.replaceAll(" ", "");
-
-                            for (int i2 = 0; i2 < num.length(); i2++) {
-                                int k1 = Character.getNumericValue(num.charAt(i2));
-
-                                //when user want to check at index 10. this fails. solution?? $$$$$$$$$$$$$$$$$$$$$$$
-                                spaces[i2] = k1;
-
-
-                                //critical###
-                                //update value in spaces[i1] to value in spaces[i2]
-
-
+                            }  else {
+                                System.out.println("Your input is invalid");
+                                System.out.println("Guesses Remaining " + numOfAttempts);
+                                checks = -1;
+                                break;
                             }
-
-
-
-
-
-
+                            //critical############# reveals the guessed word                      
                         }
-
-
-                        //critical############# reveals the guessed word
+                        //meaning none of my spaces match
+                        if (checks == 0) {
+                            System.out.println("Your letter was not found in the spaces you provided.");
+                            numOfAttempts--;
+                            System.out.println("Guesses Remaining " + numOfAttempts);
+                        } else if (checks > 0){
+                            System.out.println("The updated word is " + dashes);
+                            System.out.println("Guesses Remaining " + numOfAttempts);
+                        } else {
+                            //do nothing
+                        }
+                    } else {
+                        System.out.println("Your input is not valid. Try again.");
+                        System.out.println("Guesses remaining: " + numOfAttempts);
                     }
-                    System.out.println("The updated word is " + dashes);
-
-                    //meaning none of my spaces match
-                    if (checks == 0) {
-                        System.out.println("Your letter was not found in the spaces you provided.");
-                        numOfAttempts--;
-                        System.out.println("Guesses Remaining " + numOfAttempts);
-
-                    }
-                    // System.out.println("The updated word is " + dashes);
-                } else {
-                    System.out.println("Your input is not valid. Try again.");
-
-
-                    System.out.print("please re-select the spaces you want to check. (seperated by spaces): ");
-                    num = input.nextLine();
-
-
-                }
+                }else{
+                    System.out.println("Your input is invalid");
+                    System.out.println("Guesses remaining: " + numOfAttempts);
+                }    
             }
 
             if (numOfAttempts > 0 && dashes.equals(winningWord)) {
